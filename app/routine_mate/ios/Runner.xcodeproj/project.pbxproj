@@ -1,0 +1,10 @@
+// iOS 프로젝트 파일은 Xcode를 통해 생성되어야 합니다.
+// Bundle ID: com.accu.routine.mate
+// Product Name: RoutineMate
+// Organization Identifier: com.accu.routine
+
+// 주요 설정:
+// PRODUCT_BUNDLE_IDENTIFIER = com.accu.routine.mate
+// PRODUCT_NAME = RoutineMate
+// IPHONEOS_DEPLOYMENT_TARGET = 11.0
+// SWIFT_VERSION = 5.0
