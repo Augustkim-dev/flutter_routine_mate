@@ -16,6 +16,11 @@
 RoutineMate는 복잡한 기능 없이 오직 습관 체크에만 집중한 미니멀한 습관 관리 앱입니다.
 3초 안에 오늘의 루틴을 체크할 수 있도록 설계되었으며, 홈 위젯을 통해 앱을 열지 않고도 빠르게 접근할 수 있습니다.
 
+### 개발 현황
+- **MVP 개발 완료** (2025년 1월)
+- **현재 버전**: 1.0.0
+- **상태**: 테스트 및 최적화 진행 중
+
 ### 핵심 가치
 - **Simple**: 불필요한 기능 없는 직관적인 UI
 - **Fast**: 3초 안에 루틴 체크 완료
@@ -23,10 +28,11 @@ RoutineMate는 복잡한 기능 없이 오직 습관 체크에만 집중한 미�
 
 ## ✨ 주요 기능
 
-### MVP (현재 개발 중)
+### MVP (개발 완료)
 - ✅ **루틴 관리**: 추가, 수정, 삭제, 체크
-- ✅ **스케줄 설정**: 매일, 평일, 주말, 커스텀
+- ✅ **스케줄 설정**: 매일, 평일, 주말, 요일별 커스텀
 - ✅ **로컬 저장**: SQLite 기반 안정적인 데이터 관리
+- ✅ **스트릭 시스템**: 연속 달성일 자동 계산 및 표시
 - ✅ **다크모드**: 시스템 설정 연동
 - ✅ **애니메이션**: 부드러운 인터랙션
 
@@ -58,20 +64,29 @@ RoutineMate는 복잡한 기능 없이 오직 습관 체크에만 집중한 미�
 
 ```
 lib/
-├── core/               # 공통 모듈
-│   ├── database/      # DB 설정
-│   ├── theme/         # 테마, 색상
-│   ├── utils/         # 유틸리티
-│   └── widgets/       # 공통 위젯
-├── features/          # 기능별 모듈
-│   ├── routine/       # 루틴 관리
-│   │   ├── data/      # 데이터 레이어
-│   │   ├── domain/    # 도메인 레이어
-│   │   └── presentation/ # UI 레이어
-│   ├── widget/        # 홈 위젯
-│   ├── notification/  # 알림
-│   └── statistics/    # 통계
-└── main.dart          # 앱 진입점
+├── core/                      # 공통 모듈
+│   ├── animations/           # 애니메이션 효과
+│   ├── database/            # SQLite DB 설정
+│   ├── providers/           # Riverpod 프로바이더
+│   ├── theme/              # 테마, 색상, 아이콘
+│   ├── utils/              # 유틸리티
+│   └── widgets/            # 공통 위젯
+├── features/               # 기능별 모듈
+│   └── routine/           # 루틴 관리
+│       ├── data/         # 데이터 레이어
+│       │   ├── datasources/
+│       │   ├── models/
+│       │   └── repositories/
+│       ├── domain/       # 도메인 레이어
+│       │   ├── entities/
+│       │   └── repositories/
+│       └── presentation/ # UI 레이어
+│           ├── notifiers/
+│           ├── providers/
+│           ├── screens/
+│           ├── states/
+│           └── widgets/
+└── main.dart             # 앱 진입점
 ```
 
 ## 🚀 시작하기
@@ -87,7 +102,7 @@ lib/
 1. **저장소 클론**
 ```bash
 git clone https://github.com/Augustkim-dev/flutter_routine_mate.git
-cd flutter_routine_mate
+cd flutter_routine_mate/app/routine_mate
 ```
 
 2. **의존성 설치**
@@ -114,20 +129,17 @@ flutter build ios --release
 
 ## 📱 스크린샷
 
-<div align="center">
-  <img src="docs/screenshots/home.png" width="250" alt="Home Screen">
-  <img src="docs/screenshots/add_routine.png" width="250" alt="Add Routine">
-  <img src="docs/screenshots/statistics.png" width="250" alt="Statistics">
-</div>
+> 📸 스크린샷은 준비 중입니다. 곧 업데이트될 예정입니다.
 
 ## 🗓 개발 로드맵
 
-### Phase 1-4: MVP (2주)
+### Phase 1-4: MVP ✅ (완료)
 - [x] 프로젝트 초기 설정
-- [x] SQLite 데이터베이스 구축
-- [ ] 핵심 UI 구현
-- [ ] 상태 관리 (Riverpod)
-- [ ] 테스트 & 성능 최적화
+- [x] Phase 1: SQLite 데이터베이스 구축
+- [x] Phase 2: 핵심 UI 시스템 구현
+- [x] Phase 3: Riverpod 상태 관리 구현
+- [x] 요일별 루틴 설정 기능
+- [x] 스트릭 시스템 구현
 
 ### Phase 5-8: Post-MVP (2주)
 - [ ] 홈 위젯 구현
@@ -161,6 +173,13 @@ flutter test integration_test
 - [Phase별 작업 계획](docs/plans/)
 - [작업 규칙](docs/plans/000.작업_규칙.md)
 - [데이터베이스 설계](docs/plans/003.데이터베이스_변경_sqlite.md)
+- [작업 일지](docs/worklogs/)
+
+### 구현 완료 문서
+- [Phase 1: 데이터베이스 구축](docs/worklogs/004.phase1_기초설정_데이터베이스.md)
+- [Phase 2: UI 시스템 구현](docs/worklogs/002.phase2_ui_구현.md)
+- [Phase 3: 상태관리 구현](docs/worklogs/006.phase3_상태관리_데이터연동.md)
+- [요일 설정 기능](docs/worklogs/012.요일_설정_기능.md)
 
 ## 🤝 기여하기
 
