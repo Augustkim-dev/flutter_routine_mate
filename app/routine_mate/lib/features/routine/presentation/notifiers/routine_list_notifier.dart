@@ -122,6 +122,7 @@ class RoutineListNotifier extends StateNotifier<AsyncValue<RoutineListState>> {
       // 연속 달성 일수 재계산
       final streaks = await _calculateStreaks(currentState.routines);
       state = AsyncValue.data(currentState.copyWith(
+        todayCompletions: updatedCompletions,  // 완료 상태 유지
         streaks: streaks,
       ));
     } catch (error, stackTrace) {
