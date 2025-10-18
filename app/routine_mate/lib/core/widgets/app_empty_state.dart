@@ -7,6 +7,7 @@ import 'app_button.dart';
 class AppEmptyState extends StatelessWidget {
   final String title;
   final String? message;
+  final String? description; // description 파라미터 추가 (message의 별칭)
   final IconData? icon;
   final Widget? image;
   final String? actionText;
@@ -17,6 +18,7 @@ class AppEmptyState extends StatelessWidget {
     required this.title,
     super.key,
     this.message,
+    this.description, // description 파라미터 추가
     this.icon,
     this.image,
     this.actionText,
@@ -62,11 +64,11 @@ class AppEmptyState extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
 
-          // 메시지
-          if (message != null) ...[
+          // 메시지 (message 또는 description)
+          if (message != null || description != null) ...[
             const SizedBox(height: 8),
             Text(
-              message!,
+              message ?? description ?? '',
               style: AppTextStyles.bodyMedium.copyWith(
                 color: isDark
                     ? AppColors.onSurfaceVariantDark

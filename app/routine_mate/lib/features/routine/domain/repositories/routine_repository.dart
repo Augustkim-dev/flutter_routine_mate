@@ -66,4 +66,16 @@ abstract class RoutineRepository {
 
   /// 데이터를 가져옵니다 (복원용)
   Future<void> importData(Map<String, dynamic> data);
+
+  /// 특정 날짜의 루틴 완료 상태를 가져옵니다
+  Future<CompletionRecord?> getCompletionStatus(String routineId, DateTime date);
+
+  /// 루틴을 완료로 표시합니다
+  Future<void> markAsCompleted(String routineId, DateTime date);
+
+  /// 루틴을 미완료로 표시합니다
+  Future<void> markAsIncomplete(String routineId, DateTime date);
+
+  /// 현재 연속 달성 일수를 가져옵니다
+  Future<int> getCurrentStreak(String routineId);
 }

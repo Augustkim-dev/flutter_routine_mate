@@ -169,6 +169,12 @@ class AppTextStyles {
     height: 1.2,
   );
 
+  // Aliases for compatibility
+  static const TextStyle body1 = bodyLarge;
+  static const TextStyle body2 = bodyMedium;
+  static const TextStyle label1 = labelLarge;
+  static const TextStyle label2 = labelMedium;
+
   // Helper methods
   static TextStyle withColor(TextStyle style, Color color) {
     return style.copyWith(color: color);
@@ -181,4 +187,11 @@ class AppTextStyles {
   static TextStyle withSize(TextStyle style, double size) {
     return style.copyWith(fontSize: size);
   }
+}
+
+// Extension method for TextStyle
+extension TextStyleExtension on TextStyle {
+  TextStyle withColor(Color color) => copyWith(color: color);
+  TextStyle withWeight(FontWeight weight) => copyWith(fontWeight: weight);
+  TextStyle withSize(double size) => copyWith(fontSize: size);
 }

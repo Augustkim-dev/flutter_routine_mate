@@ -44,6 +44,9 @@ class Routine {
     return scheduleType.isActiveOnDate(date, customDays);
   }
 
+  /// 특정 날짜에 루틴이 스케줄되어 있는지 확인합니다 (isActiveOnDate의 별칭)
+  bool isScheduledForDate(DateTime date) => isActiveOnDate(date);
+
   /// 스케줄 설명을 가져옵니다
   String get scheduleDescription {
     return scheduleType.getDescription(customDays);

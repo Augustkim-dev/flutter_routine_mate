@@ -61,6 +61,21 @@ class AppColors {
   static const Color background = Color(0xFFFAFAFB);
   static const Color backgroundDark = Color(0xFF121212);
 
+  // Primary Color shortcuts
+  static const Color primary = primaryIndigo;
+  static const Color primaryLight = primaryIndigoLight;
+  static const Color primaryDark = primaryIndigoDark;
+
+  // Text Colors shortcuts
+  static const Color textPrimary = onSurface;
+  static const Color textPrimaryDark = onSurfaceDark;
+  static const Color textSecondary = onSurfaceVariant;
+  static const Color textSecondaryDark = onSurfaceVariantDark;
+
+  // Border Colors
+  static const Color border = gray300;
+  static const Color borderDark = gray700;
+
   // 루틴 색상 이름 (한글)
   static const List<String> routineColorNames = [
     '인디고',

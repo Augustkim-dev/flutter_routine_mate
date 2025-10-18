@@ -423,4 +423,54 @@ class RoutineRepositoryImpl implements RoutineRepository {
         '${date.month.toString().padLeft(2, '0')}-'
         '${date.day.toString().padLeft(2, '0')}';
   }
+
+  @override
+  Future<CompletionRecord?> getCompletionStatus(String routineId, DateTime date) async {
+    try {
+      final statusMap = await _localDataSource.getCompletionStatusForDate(date);
+      final isCompleted = statusMap[routineId] ?? false;
+
+      if (!isCompleted) return null;
+
+      return CompletionRecord(
+        routineId: routineId,
+        date: date,
+        isCompleted: isCompleted,
+        createdAt: DateTime.now(),
+      );
+    } catch (e) {
+      throw Exception('완료 상태 조회에 실패했습니다: $e');
+    }
+  }
+
+  @override
+  Future<void> markAsCompleted(String routineId, DateTime date) async {
+    try {
+      final record = CompletionRecord(
+        routineId: routineId,
+        date: date,
+        isCompleted: true,
+        completedAt: DateTime.now(),
+        createdAt: DateTime.now(),
+      );
+      await upsertCompletionRecord(record);
+    } catch (e) {
+      throw Exception('완료 표시에 실패했습니다: $e');
+    }
+  }
+
+  @override
+  Future<void> markAsIncomplete(String routineId, DateTime date) async {
+    try {
+      await deleteCompletionRecord(routineId, date);
+    } catch (e) {
+      throw Exception('미완료 표시에 실패했습니다: $e');
+    }
+  }
+
+  @override
+  Future<int> getCurrentStreak(String routineId) async {
+    // calculateStreak와 동일한 메서드이므로 그대로 호출
+    return await calculateStreak(routineId);
+  }
 }

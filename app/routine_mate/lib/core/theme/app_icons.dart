@@ -130,6 +130,9 @@ class AppIcons {
     return routineIcons[index];
   }
 
+  /// getIcon 별칭 (호환성)
+  static IconData getIcon(int index) => getRoutineIcon(index);
+
   /// 아이콘 인덱스로 아이콘 이름 가져오기
   static String getRoutineIconName(int index) {
     if (index < 0 || index >= iconNames.length) {
