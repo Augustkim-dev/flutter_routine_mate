@@ -62,7 +62,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             name: routineData['name'] ?? '',
             iconIndex: routineData['iconIndex'] ?? 0,
             colorIndex: routineData['colorIndex'] ?? 0,
-            scheduleType: ScheduleType.daily,
+            scheduleType: routineData['scheduleType'] ?? ScheduleType.daily,
+            customDays: routineData['customDays'],
             sortOrder: 0,
             isReminderEnabled: false,
             createdAt: DateTime.now(),
@@ -234,6 +235,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             colorIndex: routine.colorIndex,
                             isCompleted: isCompleted,
                             streak: streak,
+                            scheduleDescription: routine.scheduleDescription,
                             onTap: () {
                               // 토글 기능을 onTap에서 처리
                               ref.read(routineListProvider.notifier).toggleCompletion(routine.id);
@@ -252,6 +254,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                     'name': routine.name,
                                     'iconIndex': routine.iconIndex,
                                     'colorIndex': routine.colorIndex,
+                                    'scheduleType': routine.scheduleType,
+                                    'customDays': routine.customDays,
                                   },
                                   onSave: (routineData) async {
                                     // 루틴 수정
@@ -259,6 +263,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                       name: routineData['name'] ?? routine.name,
                                       iconIndex: routineData['iconIndex'] ?? routine.iconIndex,
                                       colorIndex: routineData['colorIndex'] ?? routine.colorIndex,
+                                      scheduleType: routineData['scheduleType'] ?? routine.scheduleType,
+                                      customDays: routineData['customDays'],
                                     );
 
                                     final navigator = Navigator.of(context);

@@ -13,6 +13,7 @@ class RoutineCard extends StatefulWidget {
   final int colorIndex;
   final bool isCompleted;
   final int streak;
+  final String? scheduleDescription;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
   final VoidCallback? onDelete;
@@ -26,6 +27,7 @@ class RoutineCard extends StatefulWidget {
     required this.isCompleted,
     super.key,
     this.streak = 0,
+    this.scheduleDescription,
     this.onTap,
     this.onLongPress,
     this.onDelete,
@@ -149,7 +151,7 @@ class _RoutineCardState extends State<RoutineCard>
                   ),
                   const SizedBox(width: 16),
 
-                  // 루틴 이름 및 스트릭
+                  // 루틴 이름, 요일 정보 및 스트릭
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,6 +169,17 @@ class _RoutineCardState extends State<RoutineCard>
                                 : null,
                           ),
                         ),
+                        if (widget.scheduleDescription != null) ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            widget.scheduleDescription!,
+                            style: AppTextStyles.caption.copyWith(
+                              color: isDark
+                                  ? AppColors.gray500
+                                  : AppColors.gray600,
+                            ),
+                          ),
+                        ],
                         if (widget.streak > 0) ...[
                           const SizedBox(height: 4),
                           Row(
